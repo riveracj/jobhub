@@ -1,0 +1,79 @@
+.btn {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s, opacity 0.2s, box-shadow 0.2s;
+  font-family: var(--font);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.primary {
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #000;
+}
+
+.primary:hover:not(:disabled) {
+  box-shadow: 0 4px 16px rgba(252, 211, 77, 0.25);
+}
+
+.secondary {
+  padding: 14px 28px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.secondary:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.small {
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  transform: scale(0);
+  animation: rippleAnim 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(8);
+    opacity: 0;
+  }
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

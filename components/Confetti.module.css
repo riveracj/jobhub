@@ -1,0 +1,43 @@
+.container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  top: -12px;
+  opacity: 0;
+  animation: fall linear forwards;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.square {
+  border-radius: 2px;
+}
+
+.triangle {
+  width: 0 !important;
+  height: 0 !important;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom-width: 12px;
+  border-bottom-style: solid;
+  background: transparent !important;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}

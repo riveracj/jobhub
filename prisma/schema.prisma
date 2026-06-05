@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  role      String   @default("seeker") // seeker | employer | admin
+  phone     String?
+  avatar    String?
+  bio       String?
+  skills    String?  // comma-separated tags
+  resume    String?  // URL to resume file
+  lat       Float?
+  lng       Float?
+  location  String?
+  company   String?  // employer only
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobs         Job[]
+  applications Application[]
+  sentMessages Message[] @relation("SentMessages")
+  recvMessages Message[] @relation("RecvMessages")
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  location    String?
+  lat         Float?
+  lng         Float?
+  radius      Int?     // km radius
+  tags        String?  // comma-separated
+  type        String   @default("full-time") // full-time | part-time | contract | freelance
+  salary      String?
+  status      String   @default("active") // active | closed | deleted
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  employerId  String
+  employer    User          @relation(fields: [employerId], references: [id])
+  applications Application[]
+}
+
+model Application {
+  id        String   @id @default(cuid())
+  status    String   @default("pending") // pending | reviewed | accepted | rejected
+  coverNote String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  seekerId String
+  jobId    String
+  seeker   User @relation(fields: [seekerId], references: [id])
+  job      Job  @relation(fields: [jobId], references: [id])
+
+  @@unique([seekerId, jobId])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  senderId   String
+  receiverId String
+  sender     User @relation("SentMessages", fields: [senderId], references: [id])
+  receiver   User @relation("RecvMessages", fields: [receiverId], references: [id])
+}

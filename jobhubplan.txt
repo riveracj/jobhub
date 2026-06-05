@@ -1,0 +1,36 @@
+You are a Senior QA Automation and Manual Test Engineer specializing in hyper-local marketplace and matching platforms. Your goal is to analyze the following "Local Job Community Platform" blueprint and generate a comprehensive Test Plan, User Story Acceptance Criteria, and an Edge Case Matrix.
+
+Focus areas include: User roles (Job Seeker, Employer, Admin), hyper-local location tagging, real-time messaging, notifications (SMS/Push), data privacy, concurrency, and spam/moderation prevention.
+
+---
+
+### 1. BOUNDARY & EDGE CASE TESTING MATRIX
+Analyze and write specific test cases for the following scenarios, formatting the output as a Markdown table with columns: [Component/Module | Scenario Description | Expected Behavior | Risk Level (Low/Med/High)]:
+
+*   **Location & Proximity:** 
+    *   Job seeker and employer are on opposite sides of a regional border or outside specified radius limits.
+    *   GPS/Location permissions are denied or spoofed by the user.
+*   **Job Postings & Text Inputs:** 
+    *   Employers injecting malicious scripts (XSS) into job description fields.
+    *   Spam prevention: Employer posting 50 identical jobs within 2 minutes.
+    *   Extremely large resume/CV uploads (e.g., 50MB files, unsupported formats).
+*   **Matching & Notification Triggers:**
+    *   A job seeker edits their profile tags *at the exact millisecond* a matching job is published.
+    *   SMS/Push notification system is delayed or goes offline—handling message queuing and retries without duplicating alerts.
+*   **Concurrency & State Machine:**
+    *   Two employers try to hire/claim the same candidate simultaneously.
+    *   An employer deletes a job post while a job seeker is actively typing a message or submitting an application for it.
+
+---
+
+### 2. END-TO-END (E2E) USER JOURNEY WALKTHROUGHS
+Provide explicit step-by-step manual testing scripts for the core user loops:
+1.  **Frictionless Seeker Onboarding:** From registration to profile completion and local discoverability.
+2.  **Employer Job Lifecycle:** From business verification, posting via a template, receiving an application, to moving a candidate through the hiring pipeline stages.
+3.  **Real-Time Communications:** Verifying instant messaging delivery status, read receipts, and system fallback if socket connections drop.
+
+---
+
+### 3. AUTOMATION CRITERIA & ENVIRONMENT SETUP
+*   Identify which 20% of these test cases should be prioritized for automation testing (UI with Playwright/Cypress or API integration tests) to achieve 80% regression confidence.
+*   Detail the precise API endpoints that require robust payload verification and contract testing.

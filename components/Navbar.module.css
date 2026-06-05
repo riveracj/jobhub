@@ -1,0 +1,192 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 800;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.logoText {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userArea {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navLink {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--text);
+}
+
+.cta {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cta:hover {
+  opacity: 0.9;
+}
+
+.logoutBtn {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.logoutBtn:hover {
+  background: var(--border);
+  color: var(--text);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 24px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.mobileMenu.show {
+  display: flex;
+}
+
+.mobileLink {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.mobileLink:hover {
+  background: var(--border);
+}
+
+.mobileCta {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #000;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+
+.mobileLogout {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mobileLogout:hover {
+  background: var(--border);
+}
+
+@media (max-width: 768px) {
+  .userArea {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
